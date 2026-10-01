@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey Interface Demo</title>
+  <meta name="description" content="Demonstration of modern online survey interface features including searchable dropdowns, automatic skip logic, and multi-sitting progress visualizer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+  <header class="header">
+    <div class="header-container">
+      <div class="header-badge">Interactive Preview</div>
+      <h1 class="header-title">Survey Interface Demo</h1>
+      <p class="header-subtitle">
+        This is a visual preview demonstrating online survey interaction patterns using generic placeholder questions. No responses are recorded or sent anywhere.
+      </p>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-container">
+    <!-- SECTION 1: SEARCHABLE DROPDOWN -->
+    <section class="demo-section" aria-labelledby="section-1-heading">
+      <div class="section-header">
+        <span class="section-step-tag">Feature 01</span>
+        <h2 id="section-1-heading" class="section-title">Searchable Dropdown (Custom Combobox)</h2>
+        <p class="section-caption">
+          Allows participants to quickly filter and pick an answer from long option lists (such as locations, items, or categories) using instant typing or keyboard controls.
+        </p>
+      </div>
+
+      <div class="card demo-card">
+        <form class="survey-question-form" onsubmit="return false;">
+          <div class="form-group">
+            <label id="combobox-label" for="combobox-input" class="question-label">
+              <span class="question-number">Demo Question 1</span>
+              <span class="question-text">Select your preferred placeholder answer from the list below:</span>
+            </label>
+            <p class="field-hint">Type to filter options or use Up/Down arrow keys to navigate.</p>
+
+            <div class="combobox-wrapper">
+              <div class="combobox-input-container">
+                <input 
+                  type="text" 
+                  id="combobox-input" 
+                  class="combobox-input" 
+                  role="combobox"
+                  aria-expanded="false" 
+                  aria-autocomplete="list" 
+                  aria-controls="combobox-list" 
+                  aria-labelledby="combobox-label"
+                  aria-activedescendant=""
+                  placeholder="Type to filter answers (e.g. Answer A)..."
+                  autocomplete="off"
+                  autocorrect="off"
+                  capitalize="off"
+                >
+                <button type="button" id="combobox-clear-btn" class="combobox-clear-btn" aria-label="Clear selection" hidden>&times;</button>
+                <span class="combobox-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+
+              <!-- Listbox dropdown -->
+              <ul 
+                id="combobox-list" 
+                class="combobox-list" 
+                role="listbox" 
+                aria-labelledby="combobox-label"
+                hidden
+              >
+                <!-- Populated dynamically by script.js -->
+              </ul>
+            </div>
+
+            <!-- ARIA Live status region for screen reader feedback -->
+            <div id="combobox-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+            <!-- Display box for selected answer result -->
+            <div id="selected-answer-display" class="selected-result-badge" hidden>
+              Selected Answer: <strong id="selected-answer-text"></strong>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- SECTION 2: AUTOMATIC SKIP LOGIC -->
+    <section class="demo-section" aria-labelledby="section-2-heading">
+      <div class="section-header">
+        <span class="section-step-tag">Feature 02</span>
+        <h2 id="section-2-heading" class="section-title">Automatic Skip Logic Flow</h2>
+        <p class="section-caption">
+          Dynamically routes respondents based on their selected answers, hiding irrelevant questions automatically without any extra effort or manual page skipping.
+        </p>
+      </div>
+
+      <div class="card demo-card">
+        <!-- Visual Flow Diagram / Stepper -->
+        <div class="flow-stepper-container">
+          <div class="flow-stepper-title">Survey Progress &amp; Branch Path</div>
+          <div class="flow-stepper-nodes" role="navigation" aria-label="Survey question progress">
+            <div class="stepper-node" id="step-node-q2">
+              <div class="node-circle">1</div>
+              <span class="node-label">Demo Q2</span>
+            </div>
+            <div class="stepper-connector" id="connector-q2-q3"></div>
+            <div class="stepper-node" id="step-node-q3">
+              <div class="node-circle">2</div>
+              <span class="node-label">Demo Q3 <span class="skipped-badge" id="q3-skipped-tag">Skipped</span></span>
+            </div>
+            <div class="stepper-connector" id="connector-q3-q4"></div>
+            <div class="stepper-node" id="step-node-q4">
+              <div class="node-circle">3</div>
+              <span class="node-label">Demo Q4</span>
+            </div>
+            <div class="stepper-connector" id="connector-q4-end"></div>
+            <div class="stepper-node" id="step-node-end">
+              <div class="node-circle">✓</div>
+              <span class="node-label">End</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question View Container -->
+        <div id="survey-question-container" class="question-view" aria-live="polite">
+          <!-- Dynamic Question Card content rendered by script.js -->
+        </div>
+
+        <!-- Survey Controls -->
+        <div class="survey-nav-controls">
+          <button type="button" id="survey-back-btn" class="btn btn-secondary" disabled>
+            &larr; Back
+          </button>
+          <div class="nav-right-actions">
+            <button type="button" id="survey-restart-btn" class="btn btn-tertiary">
+              Restart Demo
+            </button>
+            <button type="button" id="survey-next-btn" class="btn btn-primary">
+              Next &rarr;
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: MULTIPLE SHORT SITTINGS VISUALIZATION -->
+    <section class="demo-section" aria-labelledby="section-3-heading">
+      <div class="section-header">
+        <span class="section-step-tag">Feature 03</span>
+        <h2 id="section-3-heading" class="section-title">Flexible Completion (Multiple Short Sittings)</h2>
+        <p class="section-caption">
+          Participants can complete longer surveys in several quick 5-minute sittings rather than all at once, returning whenever convenient without losing progress.
+        </p>
+      </div>
+
+      <div class="card demo-card">
+        <div class="sittings-comparison">
+          <!-- Model 1: Single Long Sitting -->
+          <div class="sitting-model">
+            <div class="model-header">
+              <h3 class="model-title">Standard Single Sitting</h3>
+              <span class="model-duration">30 minutes continuous</span>
+            </div>
+            <div class="timeline-bar-wrapper">
+              <div class="timeline-bar continuous-bar" aria-label="One 30-minute sitting block">
+                <span class="bar-label">One 30-minute sitting</span>
+              </div>
+            </div>
+            <p class="model-description">Requires continuous dedicated attention in a single attempt.</p>
+          </div>
+
+          <div class="model-divider" aria-hidden="true">
+            <span>VS</span>
+          </div>
+
+          <!-- Model 2: Six Short Sittings -->
+          <div class="sitting-model">
+            <div class="model-header">
+              <h3 class="model-title">Flexible Short Sittings</h3>
+              <span class="model-duration">Six 5-minute sittings</span>
+            </div>
+            <p class="interactive-hint">Click or tap any segment to preview sitting details:</p>
+            <div class="timeline-bar-wrapper">
+              <div class="timeline-bar segmented-bar" id="segmented-timeline" role="group" aria-label="Six 5-minute sittings timeline">
+                <!-- 6 segments generated in HTML or script -->
+                <button type="button" class="segment-btn" data-segment="1" aria-label="Sitting 1: 5 minutes">
+                  <span class="segment-fill"></span>
+                  <span class="segment-text">Sitting 1</span>
+                </button>
+                <span class="pause-indicator" aria-label="Pause: come back any time">Pause</span>
+
+                <button type="button" class="segment-btn" data-segment="2" aria-label="Sitting 2: 5 minutes">
+                  <span class="segment-fill"></span>
+                  <span class="segment-text">Sitting 2</span>
+                </button>
+                <span class="pause-indicator" aria-label="Pause: come back any time">Pause</span>
+
+                <button type="button" class="segment-btn" data-segment="3" aria-label="Sitting 3: 5 minutes">
+                  <span class="segment-fill"></span>
+                  <span class="segment-text">Sitting 3</span>
+                </button>
+                <span class="pause-indicator" aria-label="Pause: come back any time">Pause</span>
+
+                <button type="button" class="segment-btn" data-segment="4" aria-label="Sitting 4: 5 minutes">
+                  <span class="segment-fill"></span>
+                  <span class="segment-text">Sitting 4</span>
+                </button>
+                <span class="pause-indicator" aria-label="Pause: come back any time">Pause</span>
+
+                <button type="button" class="segment-btn" data-segment="5" aria-label="Sitting 5: 5 minutes">
+                  <span class="segment-fill"></span>
+                  <span class="segment-text">Sitting 5</span>
+                </button>
+                <span class="pause-indicator" aria-label="Pause: come back any time">Pause</span>
+
+                <button type="button" class="segment-btn" data-segment="6" aria-label="Sitting 6: 5 minutes">
+                  <span class="segment-fill"></span>
+                  <span class="segment-text">Sitting 6</span>
+                </button>
+              </div>
+            </div>
+            
+            <!-- Segment detail display box -->
+            <div id="segment-detail-card" class="segment-detail-box" aria-live="polite">
+              <span class="detail-icon" aria-hidden="true">💡</span>
+              <p id="segment-detail-text">
+                Select a sitting segment above to view details.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <p>This is a demonstration interface with placeholder content. No responses are collected.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
