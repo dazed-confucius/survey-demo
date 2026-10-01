@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Survey Interface Demo</title>
-  <meta name="description" content="Demonstration of modern online survey interface features including searchable dropdowns, automatic skip logic, and multi-sitting progress visualizer.">
+  <title>Survey Interface Preview</title>
+  <meta name="description" content="A clinical-grade preview demonstrating online survey interface features including searchable dropdowns, automatic skip logic, and multi-sitting progress visualizer.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,237 +13,403 @@
 <body>
   <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
-  <header class="header">
-    <div class="header-container">
-      <div class="header-badge">Interactive Preview</div>
-      <h1 class="header-title">Survey Interface Demo</h1>
-      <p class="header-subtitle">
-        This is a visual preview demonstrating online survey interaction patterns using generic placeholder questions. No responses are recorded or sent anywhere.
+  <!-- STICKY SLIM TOP NAV -->
+  <nav class="sticky-nav" aria-label="Main Navigation">
+    <div class="nav-container">
+      <span class="nav-brand">Survey Preview</span>
+      <ul class="nav-links">
+        <li><a href="#dropdown-section" class="nav-link active">Searchable Dropdown</a></li>
+        <li><a href="#skip-logic-section" class="nav-link">Automatic Skip Logic</a></li>
+        <li><a href="#sittings-section" class="nav-link">Short Sittings</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO HEADER -->
+  <header class="hero-header">
+    <div class="container">
+      <div class="demo-pill">Demonstration - placeholder content only</div>
+      <h1 class="hero-title">Survey Interface Preview</h1>
+      <p class="hero-subtitle">
+        An interactive demonstration of modern survey participant features using generic placeholder questions.
       </p>
     </div>
   </header>
 
-  <main id="main-content" class="main-container">
+  <!-- MAIN CONTAINER -->
+  <main id="main-content" class="main-content">
+    
     <!-- SECTION 1: SEARCHABLE DROPDOWN -->
-    <section class="demo-section" aria-labelledby="section-1-heading">
-      <div class="section-header">
-        <span class="section-step-tag">Feature 01</span>
-        <h2 id="section-1-heading" class="section-title">Searchable Dropdown (Custom Combobox)</h2>
+    <section id="dropdown-section" class="demo-section" aria-labelledby="sec-1-title">
+      <div class="container">
+        <div class="section-badge">01</div>
+        <h2 id="sec-1-title" class="section-title">Searchable Dropdown</h2>
         <p class="section-caption">
-          Allows participants to quickly filter and pick an answer from long option lists (such as locations, items, or categories) using instant typing or keyboard controls.
+          Filter long answer options instantly by typing or using keyboard navigation.
         </p>
-      </div>
 
-      <div class="card demo-card">
-        <form class="survey-question-form" onsubmit="return false;">
-          <div class="form-group">
-            <label id="combobox-label" for="combobox-input" class="question-label">
-              <span class="question-number">Demo Question 1</span>
-              <span class="question-text">Select your preferred placeholder answer from the list below:</span>
-            </label>
-            <p class="field-hint">Type to filter options or use Up/Down arrow keys to navigate.</p>
+        <div class="card survey-widget-card">
+          <form class="survey-form" onsubmit="return false;">
+            <div class="question-header">
+              <span class="question-badge">Demo Question 1</span>
+              <h3 class="question-text">Select your preferred placeholder answer from the list:</h3>
+            </div>
 
-            <div class="combobox-wrapper">
-              <div class="combobox-input-container">
-                <input 
-                  type="text" 
-                  id="combobox-input" 
-                  class="combobox-input" 
-                  role="combobox"
-                  aria-expanded="false" 
-                  aria-autocomplete="list" 
-                  aria-controls="combobox-list" 
-                  aria-labelledby="combobox-label"
-                  aria-activedescendant=""
-                  placeholder="Type to filter answers (e.g. Answer A)..."
-                  autocomplete="off"
-                  autocorrect="off"
-                  capitalize="off"
-                >
-                <button type="button" id="combobox-clear-btn" class="combobox-clear-btn" aria-label="Clear selection" hidden>&times;</button>
-                <span class="combobox-icon" aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
+            <div class="combobox-control-group">
+              <div class="combobox-top-bar">
+                <span class="field-label">Searchable Combobox</span>
+                <button type="button" id="auto-type-btn" class="btn btn-secondary btn-sm" aria-label="Simulate typing in search box">
+                  ⚡ Try Auto-Type Demo
+                </button>
               </div>
 
-              <!-- Listbox dropdown -->
-              <ul 
-                id="combobox-list" 
-                class="combobox-list" 
-                role="listbox" 
-                aria-labelledby="combobox-label"
-                hidden
-              >
-                <!-- Populated dynamically by script.js -->
-              </ul>
-            </div>
+              <div class="combobox-wrapper">
+                <div class="combobox-input-container">
+                  <input 
+                    type="text" 
+                    id="combobox-input" 
+                    class="combobox-input" 
+                    role="combobox"
+                    aria-expanded="false" 
+                    aria-autocomplete="list" 
+                    aria-controls="combobox-list" 
+                    aria-labelledby="sec-1-title"
+                    aria-activedescendant=""
+                    placeholder="Type to filter answers (e.g. Answer C)..."
+                    autocomplete="off"
+                    autocorrect="off"
+                    capitalize="off"
+                  >
+                  <button type="button" id="combobox-clear-btn" class="combobox-clear-btn" aria-label="Clear selection" hidden>&times;</button>
+                  <span class="combobox-chevron" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
 
-            <!-- ARIA Live status region for screen reader feedback -->
-            <div id="combobox-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+                <ul 
+                  id="combobox-list" 
+                  class="combobox-list" 
+                  role="listbox" 
+                  aria-label="Placeholder Answers"
+                  hidden
+                >
+                  <!-- Populated dynamically by script.js -->
+                </ul>
+              </div>
 
-            <!-- Display box for selected answer result -->
-            <div id="selected-answer-display" class="selected-result-badge" hidden>
-              Selected Answer: <strong id="selected-answer-text"></strong>
+              <div id="combobox-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+              <div id="selected-answer-display" class="selected-badge" hidden>
+                Selected Option: <strong id="selected-answer-text"></strong>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </section>
 
     <!-- SECTION 2: AUTOMATIC SKIP LOGIC -->
-    <section class="demo-section" aria-labelledby="section-2-heading">
-      <div class="section-header">
-        <span class="section-step-tag">Feature 02</span>
-        <h2 id="section-2-heading" class="section-title">Automatic Skip Logic Flow</h2>
+    <section id="skip-logic-section" class="demo-section" aria-labelledby="sec-2-title">
+      <div class="container">
+        <div class="section-badge">02</div>
+        <h2 id="sec-2-title" class="section-title">Automatic Skip Logic</h2>
         <p class="section-caption">
-          Dynamically routes respondents based on their selected answers, hiding irrelevant questions automatically without any extra effort or manual page skipping.
+          Participants are automatically routed to relevant questions based on their selected answers.
         </p>
-      </div>
 
-      <div class="card demo-card">
-        <!-- Visual Flow Diagram / Stepper -->
-        <div class="flow-stepper-container">
-          <div class="flow-stepper-title">Survey Progress &amp; Branch Path</div>
-          <div class="flow-stepper-nodes" role="navigation" aria-label="Survey question progress">
-            <div class="stepper-node" id="step-node-q2">
-              <div class="node-circle">1</div>
-              <span class="node-label">Demo Q2</span>
-            </div>
-            <div class="stepper-connector" id="connector-q2-q3"></div>
-            <div class="stepper-node" id="step-node-q3">
-              <div class="node-circle">2</div>
-              <span class="node-label">Demo Q3 <span class="skipped-badge" id="q3-skipped-tag">Skipped</span></span>
-            </div>
-            <div class="stepper-connector" id="connector-q3-q4"></div>
-            <div class="stepper-node" id="step-node-q4">
-              <div class="node-circle">3</div>
-              <span class="node-label">Demo Q4</span>
-            </div>
-            <div class="stepper-connector" id="connector-q4-end"></div>
-            <div class="stepper-node" id="step-node-end">
-              <div class="node-circle">✓</div>
-              <span class="node-label">End</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Question View Container -->
-        <div id="survey-question-container" class="question-view" aria-live="polite">
-          <!-- Dynamic Question Card content rendered by script.js -->
-        </div>
-
-        <!-- Survey Controls -->
-        <div class="survey-nav-controls">
-          <button type="button" id="survey-back-btn" class="btn btn-secondary" disabled>
-            &larr; Back
+        <!-- PROMINENT SHORTCUT AUTO-PLAY DEMO BUTTONS -->
+        <div class="shortcut-toolbar">
+          <button type="button" id="autoplay-prof-a" class="btn btn-secondary btn-autoplay">
+            <span class="btn-icon">▶</span> Play as Profession A (Full Path)
           </button>
-          <div class="nav-right-actions">
-            <button type="button" id="survey-restart-btn" class="btn btn-tertiary">
-              Restart Demo
+          <button type="button" id="autoplay-prof-b" class="btn btn-secondary btn-autoplay">
+            <span class="btn-icon">⚡</span> Play as Profession B (Skips Q3)
+          </button>
+        </div>
+
+        <!-- SURVEY WIDGET CARD -->
+        <div class="card survey-widget-card">
+          <!-- Survey Progress Header -->
+          <div class="widget-progress-header">
+            <div class="progress-info">
+              <span id="widget-step-counter" class="step-counter">Question 1 of 3</span>
+              <span id="widget-progress-percent" class="progress-percent">33% Complete</span>
+            </div>
+            <div class="progress-bar-track">
+              <div id="widget-progress-bar" class="progress-bar-fill" style="width: 33%;"></div>
+            </div>
+          </div>
+
+          <!-- Dynamic Question View -->
+          <div id="skip-survey-container" class="survey-question-view" aria-live="polite">
+            <!-- Rendered dynamically by script.js -->
+          </div>
+
+          <!-- Survey Action Controls -->
+          <div class="widget-controls">
+            <button type="button" id="survey-back-btn" class="btn btn-secondary" disabled>
+              &larr; Back
             </button>
-            <button type="button" id="survey-next-btn" class="btn btn-primary">
-              Next &rarr;
-            </button>
+            <div class="controls-right">
+              <button type="button" id="survey-restart-btn" class="btn btn-tertiary">
+                Restart Demo
+              </button>
+              <button type="button" id="survey-next-btn" class="btn btn-primary" disabled>
+                Next &rarr;
+              </button>
+            </div>
           </div>
         </div>
+
+        <!-- LIVE INTERACTIVE FLOW DIAGRAM -->
+        <div class="flow-diagram-card card">
+          <div class="diagram-header">
+            <h3 class="diagram-title">Live Branching Flow Diagram</h3>
+            <span class="diagram-subtitle">Watch path light up in real-time as questions are answered</span>
+          </div>
+
+          <div class="diagram-tree-container">
+            <!-- Node Q2 -->
+            <div class="diagram-node" id="node-q2">
+              <div class="node-box">
+                <span class="node-check" id="check-q2" hidden>✓</span>
+                <span class="node-code">Q2</span>
+                <span class="node-desc">Profession</span>
+              </div>
+            </div>
+
+            <!-- Path split lines SVG -->
+            <div class="diagram-connectors">
+              <svg class="flow-svg" viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                  <marker id="arrow-active" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent-color)"/>
+                  </marker>
+                  <marker id="arrow-neutral" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--border-color)"/>
+                  </marker>
+                </defs>
+
+                <!-- Upper Branch: Q2 -> Q3 -->
+                <path id="path-q2-q3" class="flow-line" d="M 10,40 C 60,15 110,15 160,15" marker-end="url(#arrow-neutral)"/>
+                
+                <!-- Direct Bypass Branch: Q2 -> Q4 -->
+                <path id="path-q2-q4-bypass" class="flow-line flow-line-bypass" d="M 10,80 C 100,110 200,110 280,75" marker-end="url(#arrow-neutral)"/>
+
+                <!-- Upper Branch Continuation: Q3 -> Q4 -->
+                <path id="path-q3-q4" class="flow-line" d="M 210,15 C 240,15 260,35 280,50" marker-end="url(#arrow-neutral)"/>
+
+                <!-- Line Q4 -> End -->
+                <path id="path-q4-end" class="flow-line" d="M 310,60 L 380,60" marker-end="url(#arrow-neutral)"/>
+              </svg>
+            </div>
+
+            <!-- Node Q3 -->
+            <div class="diagram-node" id="node-q3">
+              <div class="node-box">
+                <span class="node-check" id="check-q3" hidden>✓</span>
+                <span class="node-code">Q3</span>
+                <span class="node-desc">Specialized</span>
+                <span class="node-badge-skipped" id="badge-q3-skipped">Skipped</span>
+              </div>
+            </div>
+
+            <!-- Node Q4 -->
+            <div class="diagram-node" id="node-q4">
+              <div class="node-box">
+                <span class="node-check" id="check-q4" hidden>✓</span>
+                <span class="node-code">Q4</span>
+                <span class="node-desc">General</span>
+              </div>
+            </div>
+
+            <!-- Node End -->
+            <div class="diagram-node" id="node-end">
+              <div class="node-box node-box-end">
+                <span class="node-check" id="check-end" hidden>✓</span>
+                <span class="node-code">End</span>
+                <span class="node-desc">Complete</span>
+              </div>
+            </div>
+          </div>
+          
+          <div id="flow-status-text" class="flow-status-footer">
+            Active Question: <strong>Demo Question 2</strong>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- SECTION 3: MULTIPLE SHORT SITTINGS VISUALIZATION -->
-    <section class="demo-section" aria-labelledby="section-3-heading">
-      <div class="section-header">
-        <span class="section-step-tag">Feature 03</span>
-        <h2 id="section-3-heading" class="section-title">Flexible Completion (Multiple Short Sittings)</h2>
+    <section id="sittings-section" class="demo-section" aria-labelledby="sec-3-title">
+      <div class="container">
+        <div class="section-badge">03</div>
+        <h2 id="sec-3-title" class="section-title">Multiple Short Sittings</h2>
         <p class="section-caption">
-          Participants can complete longer surveys in several quick 5-minute sittings rather than all at once, returning whenever convenient without losing progress.
+          Participants can pause and resume longer surveys in multiple brief sessions without losing progress.
         </p>
-      </div>
 
-      <div class="card demo-card">
-        <div class="sittings-comparison">
-          <!-- Model 1: Single Long Sitting -->
-          <div class="sitting-model">
-            <div class="model-header">
-              <h3 class="model-title">Standard Single Sitting</h3>
-              <span class="model-duration">30 minutes continuous</span>
-            </div>
-            <div class="timeline-bar-wrapper">
-              <div class="timeline-bar continuous-bar" aria-label="One 30-minute sitting block">
-                <span class="bar-label">One 30-minute sitting</span>
-              </div>
-            </div>
-            <p class="model-description">Requires continuous dedicated attention in a single attempt.</p>
-          </div>
-
-          <div class="model-divider" aria-hidden="true">
-            <span>VS</span>
-          </div>
-
-          <!-- Model 2: Six Short Sittings -->
-          <div class="sitting-model">
-            <div class="model-header">
-              <h3 class="model-title">Flexible Short Sittings</h3>
-              <span class="model-duration">Six 5-minute sittings</span>
-            </div>
-            <p class="interactive-hint">Click or tap any segment to preview sitting details:</p>
-            <div class="timeline-bar-wrapper">
-              <div class="timeline-bar segmented-bar" id="segmented-timeline" role="group" aria-label="Six 5-minute sittings timeline">
-                <!-- 6 segments generated in HTML or script -->
-                <button type="button" class="segment-btn" data-segment="1" aria-label="Sitting 1: 5 minutes">
-                  <span class="segment-fill"></span>
-                  <span class="segment-text">Sitting 1</span>
-                </button>
-                <span class="pause-indicator" aria-label="Pause: come back any time">Pause</span>
-
-                <button type="button" class="segment-btn" data-segment="2" aria-label="Sitting 2: 5 minutes">
-                  <span class="segment-fill"></span>
-                  <span class="segment-text">Sitting 2</span>
-                </button>
-                <span class="pause-indicator" aria-label="Pause: come back any time">Pause</span>
-
-                <button type="button" class="segment-btn" data-segment="3" aria-label="Sitting 3: 5 minutes">
-                  <span class="segment-fill"></span>
-                  <span class="segment-text">Sitting 3</span>
-                </button>
-                <span class="pause-indicator" aria-label="Pause: come back any time">Pause</span>
-
-                <button type="button" class="segment-btn" data-segment="4" aria-label="Sitting 4: 5 minutes">
-                  <span class="segment-fill"></span>
-                  <span class="segment-text">Sitting 4</span>
-                </button>
-                <span class="pause-indicator" aria-label="Pause: come back any time">Pause</span>
-
-                <button type="button" class="segment-btn" data-segment="5" aria-label="Sitting 5: 5 minutes">
-                  <span class="segment-fill"></span>
-                  <span class="segment-text">Sitting 5</span>
-                </button>
-                <span class="pause-indicator" aria-label="Pause: come back any time">Pause</span>
-
-                <button type="button" class="segment-btn" data-segment="6" aria-label="Sitting 6: 5 minutes">
-                  <span class="segment-fill"></span>
-                  <span class="segment-text">Sitting 6</span>
-                </button>
-              </div>
+        <div class="card sittings-card">
+          
+          <!-- SLIDER & METRICS CONTROL BAR -->
+          <div class="slider-control-bar">
+            <div class="slider-metrics">
+              <span id="slider-count" class="metric-count">Sittings Completed: 0 of 6</span>
+              <span id="slider-percent" class="metric-percent">0% Complete</span>
             </div>
             
-            <!-- Segment detail display box -->
-            <div id="segment-detail-card" class="segment-detail-box" aria-live="polite">
-              <span class="detail-icon" aria-hidden="true">💡</span>
-              <p id="segment-detail-text">
-                Select a sitting segment above to view details.
-              </p>
+            <div class="slider-input-wrapper">
+              <label for="sittings-slider" class="sr-only">Simulate completing sittings (0 to 6)</label>
+              <input 
+                type="range" 
+                id="sittings-slider" 
+                min="0" 
+                max="6" 
+                value="0" 
+                step="1" 
+                class="sittings-range-input" 
+                aria-label="Drag to simulate completing sittings from 0 to 6"
+              >
             </div>
+
+            <div class="slider-actions">
+              <button type="button" id="replay-sittings-btn" class="btn btn-secondary btn-sm">
+                🔄 Replay Animation
+              </button>
+            </div>
+          </div>
+
+          <div class="sittings-layout">
+            
+            <!-- ROW 1: ONE LONG SITTING (Fatigue Gradient) -->
+            <div class="sitting-block">
+              <div class="sitting-block-header">
+                <h3 class="sitting-block-title">One Long Sitting</h3>
+                <span class="sitting-tag sitting-tag-fatigue">30 min continuous</span>
+              </div>
+              
+              <div class="bar-container">
+                <div class="continuous-progress-bar fatigue-bar">
+                  <span class="bar-title-text">One 30-Minute Sitting (Continuous)</span>
+                </div>
+              </div>
+              
+              <div class="fatigue-indicator-row">
+                <span class="fatigue-start">⚡ Fresh Start</span>
+                <span class="fatigue-line"></span>
+                <span class="fatigue-end">⚡ Fatigue Build-up</span>
+              </div>
+            </div>
+
+            <div class="sitting-vs-badge" aria-hidden="true">VS</div>
+
+            <!-- ROW 2: SIX SHORT SITTINGS (Day 1 - Day 6 Gap Markers) -->
+            <div class="sitting-block">
+              <div class="sitting-block-header">
+                <h3 class="sitting-block-title">Six Short Sittings</h3>
+                <span class="sitting-tag sitting-tag-accent">Six 5-min sittings</span>
+              </div>
+              
+              <div class="bar-container">
+                <div id="sittings-segmented-bar" class="segmented-progress-bar" role="group" aria-label="Six 5-minute sittings">
+                  <button type="button" class="sitting-segment" data-segment="1" aria-label="Sitting 1: 5 minutes">
+                    <span class="segment-fill"></span>
+                    <span class="segment-content">
+                      <span class="segment-title"><span class="seg-check" hidden>✓ </span>Sitting 1</span>
+                      <span class="segment-time">5 min</span>
+                    </span>
+                  </button>
+
+                  <button type="button" class="sitting-segment" data-segment="2" aria-label="Sitting 2: 5 minutes">
+                    <span class="segment-fill"></span>
+                    <span class="segment-content">
+                      <span class="segment-title"><span class="seg-check" hidden>✓ </span>Sitting 2</span>
+                      <span class="segment-time">5 min</span>
+                    </span>
+                  </button>
+
+                  <button type="button" class="sitting-segment" data-segment="3" aria-label="Sitting 3: 5 minutes">
+                    <span class="segment-fill"></span>
+                    <span class="segment-content">
+                      <span class="segment-title"><span class="seg-check" hidden>✓ </span>Sitting 3</span>
+                      <span class="segment-time">5 min</span>
+                    </span>
+                  </button>
+
+                  <button type="button" class="sitting-segment" data-segment="4" aria-label="Sitting 4: 5 minutes">
+                    <span class="segment-fill"></span>
+                    <span class="segment-content">
+                      <span class="segment-title"><span class="seg-check" hidden>✓ </span>Sitting 4</span>
+                      <span class="segment-time">5 min</span>
+                    </span>
+                  </button>
+
+                  <button type="button" class="sitting-segment" data-segment="5" aria-label="Sitting 5: 5 minutes">
+                    <span class="segment-fill"></span>
+                    <span class="segment-content">
+                      <span class="segment-title"><span class="seg-check" hidden>✓ </span>Sitting 5</span>
+                      <span class="segment-time">5 min</span>
+                    </span>
+                  </button>
+
+                  <button type="button" class="sitting-segment" data-segment="6" aria-label="Sitting 6: 5 minutes">
+                    <span class="segment-fill"></span>
+                    <span class="segment-content">
+                      <span class="segment-title"><span class="seg-check" hidden>✓ </span>Sitting 6</span>
+                      <span class="segment-time">5 min</span>
+                    </span>
+                  </button>
+                </div>
+
+                <!-- External Pause & Day Gap Markers Row -->
+                <div class="day-gaps-row" aria-label="Pause markers between sittings">
+                  <div class="gap-item">
+                    <span class="gap-icon">⏸</span>
+                    <span class="gap-day">Pause (Day 1)</span>
+                  </div>
+                  <div class="gap-item">
+                    <span class="gap-icon">⏸</span>
+                    <span class="gap-day">Pause (Day 2)</span>
+                  </div>
+                  <div class="gap-item">
+                    <span class="gap-icon">⏸</span>
+                    <span class="gap-day">Pause (Day 3)</span>
+                  </div>
+                  <div class="gap-item">
+                    <span class="gap-icon">⏸</span>
+                    <span class="gap-day">Pause (Day 4)</span>
+                  </div>
+                  <div class="gap-item">
+                    <span class="gap-icon">⏸</span>
+                    <span class="gap-day">Pause (Day 5)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Segment Detail Info Box / Tooltip -->
+              <div id="sitting-detail-card" class="sitting-detail-card" aria-live="polite">
+                <span id="detail-badge-text" class="detail-badge">Sitting 1 of 6</span>
+                <p id="sitting-detail-msg">
+                  <strong>Sitting 1:</strong> about 5 minutes, then pause and continue later when convenient.
+                </p>
+              </div>
+
+            </div>
+
           </div>
         </div>
       </div>
     </section>
+
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-container">
-      <p>This is a demonstration interface with placeholder content. No responses are collected.</p>
+    <div class="container">
+      <p>This is a demonstration with placeholder content. No responses are collected.</p>
     </div>
   </footer>
 
